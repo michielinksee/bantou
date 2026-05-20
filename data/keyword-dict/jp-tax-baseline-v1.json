@@ -1,0 +1,398 @@
+{
+  "$schema": "../keyword-dict-schema.json",
+  "version": "1.0.0",
+  "locale": "ja-JP",
+  "tax_jurisdiction": "JP",
+  "tax_code_default": 0,
+  "last_updated": "2026-05-20",
+  "maintainer": "Synapse Arrows PTE. LTD.",
+  "license": "MIT",
+  "description": "Cockpit MCP の Stage 1 keyword classification 辞書。日本の税理士業務に特化した勘定科目分類辞書。v1 では 19 categories で構成、v2 で keywords/category を拡張予定。",
+  "notes": [
+    "match algorithm: 全角→半角、 大文字→小文字 normalize 後に substring match",
+    "match priority: 上から順 (= 同 transaction が複数 category match した場合、 上のが採用)",
+    "tax_code: 日本の税区分 (= 0=対象外、 1=課税仕入 8%、 2=課税仕入 10%、 21=売上 8%、 22=売上 10%、 ...)。 default 0、 keyword 単位で override 可",
+    "special_pattern: 特殊判定 logic を keyword 単位で attach (= 振込+士業名 → 支払報酬料、 振込+カナ人名 → 外注費 等)"
+  ],
+  "categories": [
+    {
+      "id": "travel",
+      "name_ja": "旅費交通費",
+      "name_en": "Travel & Transportation",
+      "freee_account_code": 605,
+      "default_tax_code": 1,
+      "description": "交通機関・宿泊・出張関連",
+      "keywords": [
+        "Suica", "PASMO", "ICOCA", "manaca", "TOICA", "kitaca", "SUGOCA",
+        "JR", "新幹線", "のぞみ", "ひかり", "こだま", "はやぶさ", "つばさ",
+        "東京メトロ", "都営地下鉄", "メトロ", "地下鉄",
+        "タクシー", "TAXI", "GO", "Didi", "S.RIDE",
+        "ANA", "JAL", "ピーチ", "Peach", "Jetstar", "Spring",
+        "Hotels.com", "Booking.com", "じゃらん", "Expedia", "アゴダ", "Agoda",
+        "Trivago", "楽天トラベル", "ホテル", "HOTEL", "INN", "旅館",
+        "高速", "ETC", "首都高", "NEXCO", "阪神高速",
+        "駐車場", "コインパーキング", "TIMES", "タイムズ", "三井のリパーク",
+        "レンタカー", "ニッポンレンタカー", "オリックスレンタカー", "トヨタレンタ"
+      ]
+    },
+    {
+      "id": "consumables",
+      "name_ja": "消耗品費",
+      "name_en": "Office Consumables",
+      "freee_account_code": 619,
+      "default_tax_code": 2,
+      "description": "事務用品・文房具・日用品",
+      "keywords": [
+        "Amazon", "AMAZON", "amazon", "ヨドバシ", "ヨドバシカメラ", "yodobashi",
+        "ビックカメラ", "BIC", "BIC CAMERA", "ビックカ",
+        "ヤマダ電機", "ヤマダデンキ", "Edion", "エディオン", "ノジマ",
+        "ケーズデンキ", "ジョーシン", "ベスト電器", "コジマ",
+        "askul", "ASKUL", "アスクル", "Kaunet", "カウネット", "たのめーる",
+        "カインズ", "コーナン", "DCM", "ナフコ", "ジョイフル本田",
+        "100均", "ダイソー", "DAISO", "セリア", "Seria", "キャンドゥ", "Can Do",
+        "無印良品", "MUJI", "ニトリ", "NITORI", "IKEA",
+        "ホームセンター", "ハンズ", "東急ハンズ", "Loft", "ロフト",
+        "ヨドバシ.com", "Amazonビジネス", "Amazon Business"
+      ]
+    },
+    {
+      "id": "communications",
+      "name_ja": "通信費",
+      "name_en": "Communications & Subscriptions",
+      "freee_account_code": 615,
+      "default_tax_code": 2,
+      "description": "電話・インターネット・SaaS subscription (海外含む)",
+      "keywords": [
+        "AWS", "Amazon Web Services", "Google Cloud", "GCP", "Azure", "Microsoft",
+        "ChatGPT", "OpenAI", "Anthropic", "Claude", "Cursor", "GitHub", "GitLab",
+        "Cloudflare", "Vercel", "Netlify", "Heroku", "DigitalOcean", "Linode",
+        "Stripe", "PayPal", "Square",
+        "Slack", "Discord", "Zoom", "Microsoft Teams", "Google Meet",
+        "Notion", "Asana", "Trello", "Jira", "ClickUp", "monday.com",
+        "Figma", "Adobe", "Canva", "Sketch", "Framer",
+        "Gmail", "Google Workspace", "Office365", "Microsoft 365",
+        "ドコモ", "docomo", "au", "ソフトバンク", "SoftBank", "楽天モバイル", "Rakuten Mobile",
+        "NTT", "光回線", "フレッツ", "OCN", "ぷらら", "BIGLOBE", "So-net",
+        "サーバー", "ドメイン", "お名前.com", "ムームードメイン",
+        "Mailchimp", "SendGrid", "Twilio", "HubSpot", "Salesforce"
+      ]
+    },
+    {
+      "id": "shipping",
+      "name_ja": "荷造運賃",
+      "name_en": "Shipping & Packaging",
+      "freee_account_code": 614,
+      "default_tax_code": 2,
+      "description": "宅配・郵便・運送料・梱包資材",
+      "keywords": [
+        "ヤマト運輸", "ヤマト", "クロネコ", "クロネコヤマト", "宅急便", "ネコポス",
+        "メール便", "クロネコメール便", "DM便",
+        "佐川急便", "佐川", "SAGAWA", "飛脚",
+        "日本郵便", "ゆうパック", "ゆうメール", "レターパック", "スマートレター", "クリックポスト", "ゆうパケット",
+        "西濃運輸", "セイノー", "福山通運", "トナミ運輸",
+        "FedEx", "DHL", "UPS", "EMS", "国際郵便",
+        "送料", "発送", "配送", "宅配", "運送費", "運賃",
+        "ダンボール", "段ボール", "梱包資材", "プチプチ", "緩衝材"
+      ]
+    },
+    {
+      "id": "meeting_meal",
+      "name_ja": "会議費",
+      "name_en": "Meeting & Meals (under ¥10K)",
+      "freee_account_code": 626,
+      "default_tax_code": 2,
+      "description": "1万円以下の飲食 (社内会議・打合せ)。 1万円超は交際費へ自動振分",
+      "amount_threshold_max": 10000,
+      "amount_overflow_category": "entertainment",
+      "keywords": [
+        "スターバックス", "Starbucks", "STARBUCKS", "スタバ",
+        "ドトール", "DOUTOR", "Doutor", "タリーズ", "Tully's",
+        "コメダ珈琲", "コメダ", "ベローチェ", "プロント", "PRONTO",
+        "サンマルクカフェ", "EXCELSIOR", "エクセルシオール",
+        "マクドナルド", "McDonald's", "マック", "MOSバーガー", "モスバーガー",
+        "ケンタッキー", "KFC", "サブウェイ", "Subway",
+        "吉野家", "松屋", "すき家", "なか卯",
+        "ジョナサン", "ガスト", "サイゼリヤ", "デニーズ", "ロイヤルホスト",
+        "セブンイレブン", "セブン-イレブン", "7-Eleven", "ローソン", "LAWSON",
+        "ファミリーマート", "ファミマ", "FamilyMart",
+        "ミニストップ", "デイリーヤマザキ", "ヤマザキ", "セコマ", "セイコーマート",
+        "コンビニ", "ベーカリー", "パン", "弁当",
+        "居酒屋", "鳥貴族", "塚田農場", "和民", "ワタミ",
+        "焼肉", "寿司", "回転寿司", "スシロー", "くら寿司", "はま寿司",
+        "ラーメン", "うどん", "蕎麦", "天ぷら",
+        "丸亀製麺", "はなまるうどん",
+        "Uber Eats", "UberEats", "出前館", "Wolt", "menu"
+      ]
+    },
+    {
+      "id": "entertainment",
+      "name_ja": "交際費",
+      "name_en": "Entertainment (over ¥10K)",
+      "freee_account_code": 624,
+      "default_tax_code": 2,
+      "description": "1万円超の飲食・接待。 1万円以下は会議費へ自動振分",
+      "amount_threshold_min": 10001,
+      "keywords": [
+        "鉄板焼", "ステーキ", "ホテル", "料亭", "懐石", "割烹", "鮨",
+        "高級寿司", "ふぐ", "蟹", "和食",
+        "フレンチ", "イタリアン", "イタリア料理", "Trattoria", "Ristorante",
+        "ワイン", "シャンパン", "Champagne", "Bar", "BAR", "バー",
+        "クラブ", "CLUB", "ラウンジ", "Lounge",
+        "中華", "中国料理", "コース", "ディナー", "DINNER",
+        "接待", "歓送迎会", "懇親会", "新年会", "忘年会",
+        "ゴルフ", "GOLF", "ゴルフ場", "ゴルフクラブ",
+        "プレゼント", "贈答品", "胡蝶蘭", "お歳暮", "お中元",
+        "髙島屋", "三越", "伊勢丹", "大丸", "松坂屋",
+        "ザ・リッツ・カールトン", "Ritz-Carlton", "リッツ", "ペニンシュラ", "Peninsula",
+        "Mandarin Oriental", "マンダリン", "ハイアット", "Hyatt",
+        "ANAインターコンチネンタル", "InterContinental", "Marriott", "マリオット",
+        "Hilton", "ヒルトン", "Sheraton", "シェラトン", "コンラッド", "Conrad",
+        "Park Hyatt", "パークハイアット",
+        "東京會舘", "帝国ホテル", "オークラ", "ホテルオークラ", "ニューオータニ"
+      ]
+    },
+    {
+      "id": "salary",
+      "name_ja": "給与",
+      "name_en": "Salary & Wages",
+      "freee_account_code": 622,
+      "default_tax_code": 0,
+      "description": "従業員給与。 振込+従業員名 で auto-detect、 税区分対象外",
+      "special_pattern": "salary_employee_match",
+      "keywords": [
+        "給与", "給料", "給与支給", "給料支給",
+        "賞与", "ボーナス", "BONUS",
+        "通勤手当", "通勤費補助",
+        "残業代", "残業手当",
+        "役員報酬", "役員賞与",
+        "役員給与", "代表報酬"
+      ]
+    },
+    {
+      "id": "outsourcing",
+      "name_ja": "外注費",
+      "name_en": "Outsourcing",
+      "freee_account_code": 626,
+      "default_tax_code": 2,
+      "description": "業務委託費。 振込+カナ人名 で auto-detect、 発生日を前月末に自動変更",
+      "special_pattern": "transfer_katakana_person",
+      "keywords": [
+        "外注", "業務委託", "委託費", "委託料",
+        "請負", "作業料",
+        "デザイン費", "design fee",
+        "コンサルティング", "consulting", "顧問料",
+        "translation", "翻訳料",
+        "ライティング", "writing",
+        "開発委託", "development outsourcing",
+        "編集",
+        "Lancers", "ランサーズ", "CrowdWorks", "クラウドワークス",
+        "Upwork", "Fiverr"
+      ]
+    },
+    {
+      "id": "professional_fee",
+      "name_ja": "支払報酬料",
+      "name_en": "Professional Fees (Tax/Legal)",
+      "freee_account_code": 627,
+      "default_tax_code": 2,
+      "description": "税理士・弁護士・社労士・司法書士等の士業報酬。 振込+士業名 で auto-detect、 取引先名も自動抽出",
+      "special_pattern": "transfer_professional",
+      "keywords": [
+        "税理士", "公認会計士", "会計士", "監査法人",
+        "弁護士", "法律事務所", "法律事務"
+        ,
+        "社労士", "社会保険労務士", "社会保険労務",
+        "司法書士", "行政書士",
+        "弁理士", "中小企業診断士",
+        "顧問報酬", "監査報酬",
+        "税務調査対応費"
+      ]
+    },
+    {
+      "id": "rent",
+      "name_ja": "地代家賃",
+      "name_en": "Rent",
+      "freee_account_code": 614,
+      "default_tax_code": 2,
+      "description": "オフィス・倉庫・駐車場月額賃料。 居住用は税区分0",
+      "keywords": [
+        "家賃", "賃料", "オフィス賃料",
+        "WeWork", "We Work", "WEWORK",
+        "リージャス", "Regus", "Spaces",
+        "ServCorp", "サーブコープ",
+        "コワーキング", "Coworking", "co-working",
+        "貸会議室", "会議室レンタル", "TKP",
+        "倉庫賃料", "貸倉庫", "トランクルーム",
+        "月極", "駐車場月極"
+      ]
+    },
+    {
+      "id": "utilities",
+      "name_ja": "水道光熱費",
+      "name_en": "Utilities",
+      "freee_account_code": 616,
+      "default_tax_code": 2,
+      "description": "電気・ガス・水道。 公共料金は除外rule で別処理されるため、 ここは事業所契約のみ",
+      "keywords": [
+        "東京電力", "東電", "TEPCO", "関西電力", "関電",
+        "中部電力", "九州電力", "東北電力", "中国電力", "四国電力", "北海道電力",
+        "東京ガス", "大阪ガス", "東邦ガス", "西部ガス", "ENEOS",
+        "Looop でんき", "ループでんき", "出光興産", "ENEOSでんき",
+        "新電力", "PPS",
+        "Lemonade", "auでんき", "ソフトバンクでんき"
+      ]
+    },
+    {
+      "id": "advertising",
+      "name_ja": "広告宣伝費",
+      "name_en": "Advertising & Marketing",
+      "freee_account_code": 631,
+      "default_tax_code": 2,
+      "description": "Google Ads / Meta / LINE 広告 / 雑誌広告等",
+      "keywords": [
+        "Google Ads", "Google AdWords", "AdWords",
+        "Meta", "Facebook Ads", "Instagram Ads",
+        "Twitter Ads", "X Ads", "LinkedIn Ads",
+        "TikTok Ads", "YouTube Ads",
+        "Yahoo!広告", "Yahoo広告", "YDA", "YDN",
+        "LINE Ads", "LINE広告",
+        "リスティング", "ディスプレイ広告",
+        "Indeed", "求人広告", "PR TIMES", "プレスリリース",
+        "アフィリエイト", "ASP", "A8", "もしも", "バリューコマース",
+        "SmartNews広告", "Gunosy広告"
+      ]
+    },
+    {
+      "id": "books_magazines",
+      "name_ja": "新聞図書費",
+      "name_en": "Books, Magazines, Newspapers",
+      "freee_account_code": 620,
+      "default_tax_code": 1,
+      "description": "書籍・雑誌・新聞・電子書籍",
+      "keywords": [
+        "Kindle", "Kindle本", "Audible",
+        "honto", "ebookjapan", "BookLive",
+        "紀伊國屋", "丸善", "ジュンク堂", "三省堂", "文教堂", "未来屋書店",
+        "TSUTAYA", "蔦屋", "ブックオフ",
+        "日経新聞", "日本経済新聞", "朝日新聞", "読売新聞", "毎日新聞", "産経新聞",
+        "東洋経済", "ダイヤモンド", "プレジデント", "Forbes", "Wired",
+        "週刊", "月刊", "雑誌"
+      ]
+    },
+    {
+      "id": "supplies",
+      "name_ja": "事務用品費",
+      "name_en": "Office Supplies",
+      "freee_account_code": 618,
+      "default_tax_code": 2,
+      "description": "10万円未満の事務器具備品 (= 10万円以上は備品 / 償却資産)",
+      "amount_threshold_max": 99999,
+      "keywords": [
+        "デスク", "椅子", "オフィスチェア", "オカムラ", "Okamura", "イトーキ", "Itoki",
+        "ハーマンミラー", "Herman Miller", "アーロンチェア",
+        "本棚", "書庫", "キャビネット",
+        "プリンター", "Printer", "EPSON", "Canon", "ブラザー", "Brother",
+        "ホワイトボード", "white board", "プロジェクター",
+        "シュレッダー", "電卓",
+        "ボールペン", "ノート", "付箋", "ポストイット", "Post-it",
+        "ファイル", "クリアファイル", "バインダー",
+        "クリップ", "ホッチキス", "ステープラー",
+        "コピー用紙", "A4コピー紙", "Office Depot"
+      ]
+    },
+    {
+      "id": "membership_fee",
+      "name_ja": "諸会費",
+      "name_en": "Memberships & Subscriptions",
+      "freee_account_code": 632,
+      "default_tax_code": 0,
+      "description": "業界団体・商工会議所・組合費等。 税区分は通常対象外",
+      "keywords": [
+        "商工会議所", "商工会",
+        "経団連", "日商", "中小企業家同友会",
+        "JETRO", "ジェトロ",
+        "業界団体", "団体会費", "組合費",
+        "ロータリークラブ", "Rotary",
+        "ライオンズクラブ", "Lions Club",
+        "青年会議所", "JC",
+        "倫理法人会", "盛和塾",
+        "TKC会費", "税理士会会費"
+      ]
+    },
+    {
+      "id": "insurance",
+      "name_ja": "保険料",
+      "name_en": "Insurance Premiums",
+      "freee_account_code": 633,
+      "default_tax_code": 0,
+      "description": "生命保険・損害保険・社会保険。消費税非課税。労災/雇用保険の事業者負担分(法定福利費)も含む",
+      "keywords": [
+        "保険料", "保険",
+        "生命保険", "養老保険", "定期保険",
+        "損害保険", "火災保険", "地震保険",
+        "自動車保険", "自賠責", "任意保険",
+        "東京海上", "三井住友海上", "損保ジャパン", "あいおいニッセイ",
+        "日本生命", "第一生命", "明治安田", "住友生命",
+        "アフラック", "Aflac", "メットライフ", "MetLife",
+        "社会保険料", "厚生年金", "健康保険料",
+        "労災保険", "雇用保険", "労働保険",
+        "介護保険", "国民健康保険", "国保",
+        "労働保険料", "確定拠出年金", "企業型DC"
+      ]
+    },
+    {
+      "id": "taxes_dues",
+      "name_ja": "租税公課",
+      "name_en": "Taxes & Public Charges",
+      "freee_account_code": 600,
+      "default_tax_code": 0,
+      "description": "法人税・住民税・事業税・印紙税・固定資産税等。消費税不課税",
+      "keywords": [
+        "法人税", "法人住民税", "法人事業税",
+        "所得税", "住民税", "源泉所得税",
+        "印紙税", "収入印紙", "印紙",
+        "固定資産税", "都市計画税",
+        "不動産取得税", "登録免許税",
+        "自動車税", "軽自動車税", "重量税",
+        "事業所税", "償却資産税",
+        "税務署", "延滞税", "加算税",
+        "住民票", "印鑑証明", "登記簿",
+        "謄本", "戸籍", "公証役場"
+      ]
+    },
+    {
+      "id": "donation",
+      "name_ja": "寄付金",
+      "name_en": "Donations & Contributions",
+      "freee_account_code": 636,
+      "default_tax_code": 0,
+      "description": "寄付金・献金・義援金。消費税不課税。損金算入限度額あり",
+      "keywords": [
+        "寄付", "寄附", "寄付金", "寄附金",
+        "義援金", "義捐金", "支援金",
+        "献金", "募金",
+        "ふるさと納税",
+        "赤十字", "ユニセフ", "UNICEF",
+        "日本財団", "公益財団", "公益社団",
+        "NPO", "認定NPO"
+      ]
+    },
+    {
+      "id": "condolence",
+      "name_ja": "慶弔費",
+      "name_en": "Condolence & Celebration",
+      "freee_account_code": 625,
+      "default_tax_code": 0,
+      "description": "慶弔見舞金。消費税不課税。福利厚生費の一部として処理する場合も",
+      "keywords": [
+        "慶弔費", "慶弔",
+        "香典", "御霊前", "御仏前",
+        "祝金", "御祝", "御祝儀", "祝儀",
+        "見舞金", "見舞い", "お見舞い",
+        "弔慰金", "弔電",
+        "結婚祝", "出産祝", "入学祝",
+        "花輪", "供花", "弔花"
+      ]
+    }
+  ]
+}

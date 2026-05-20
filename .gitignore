@@ -1,0 +1,35 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+.next/
+.turbo/
+.cache/
+coverage/
+*.tsbuildinfo
+
+# Local dogfood data (= Achieve Link freee 試験 dataなど、 commit しない)
+data/dogfood-cache/
+data/local-runs/
+
+# Stripe / Cloudflare Worker secrets
+.wrangler/
+wrangler.toml.local
+
+# Internal docs (strategy, pricing, outreach — not for public repo)
+docs/
+packages/cockpit-mcp/docs/
+
+# Sensitive data entries (real company IDs, Sleek account data)
+data/sample-data/
+data/dashboard-library/
+data/claude-md-templates/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~

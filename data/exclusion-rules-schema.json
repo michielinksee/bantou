@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/michielinksee/kansei-link-cockpit/blob/main/data/exclusion-rules-schema.json",
+  "title": "Cockpit MCP Exclusion Rules",
+  "description": "Schema for Stage 0 exclusion filters used by Cockpit MCP. These run BEFORE classify_transaction. Matching transactions are escalated to human review (= NOT auto-journalized).",
+  "type": "object",
+  "required": ["version", "locale", "tax_jurisdiction", "rules"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "locale": { "type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$" },
+    "tax_jurisdiction": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "last_updated": { "type": "string", "format": "date" },
+    "maintainer": { "type": "string" },
+    "license": { "type": "string" },
+    "description": { "type": "string" },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name_ja", "description", "priority", "match", "action"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z_]+$"
+          },
+          "name_ja": { "type": "string" },
+          "name_en": { "type": "string" },
+          "description": { "type": "string" },
+          "priority": {
+            "type": "integer",
+            "description": "Lower = higher priority. Rules evaluated top to bottom; first match wins."
+          },
+          "match": {
+            "type": "object",
+            "required": ["type", "field"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["regex", "any_keyword", "any_keyword_or_pattern", "exact"]
+              },
+              "field": {
+                "type": "string",
+                "enum": ["memo", "amount", "partner_name", "date"],
+                "description": "Which transaction field to match against (after normalization)"
+              },
+              "pattern": {
+                "type": "string",
+                "description": "Regex pattern (when type=regex)"
+              },
+              "flags": {
+                "type": "string",
+                "description": "Regex flags like 'i', 'g' (when type=regex)"
+              },
+              "keywords": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Substring list (when type=any_keyword or any_keyword_or_pattern)"
+              },
+              "patterns": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": { "type": "string" },
+                    "description": { "type": "string" },
+                    "requires_external_data": { "type": "string" }
+                  }
+                },
+                "description": "Custom pattern detectors (e.g., transfer_to_employee requires freee_hr_employee_list)"
+              }
+            }
+          },
+          "alternative_patterns": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Additional substring fallbacks beyond the primary match"
+          },
+          "action": {
+            "type": "object",
+            "required": ["type", "reason_template"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["human_review", "alternative_workflow", "skip_silently"]
+              },
+              "reason_template": {
+                "type": "string",
+                "description": "Human-readable reason shown to the tax accountant"
+              },
+              "suggested_next_step": {
+                "type": "string",
+                "description": "Concrete recommendation for the human reviewer"
+              },
+              "alternative_workflow_id": {
+                "type": "string",
+                "description": "If type=alternative_workflow, ID of the workflow to invoke (e.g., cash_balance_adjustment)"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

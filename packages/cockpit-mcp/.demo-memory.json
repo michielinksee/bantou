@@ -1,0 +1,591 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-05-19T01:16:58.711Z",
+  "updated_at": "2026-05-19T01:17:10.476Z",
+  "patterns": {
+    "suica_チャージ_渋谷駅": [
+      {
+        "partner_key": "suica_チャージ_渋谷駅",
+        "memo_sample": "Suica チャージ 渋谷駅",
+        "memo_keywords": [
+          "suica",
+          "チャージ",
+          "渋谷駅"
+        ],
+        "category_id": "travel",
+        "category_name_ja": "旅費交通費",
+        "freee_account_code": 605,
+        "tax_code": 1,
+        "amount_typical": 3000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "aws_cloud_monthly": [
+      {
+        "partner_key": "aws_cloud_monthly",
+        "memo_sample": "AWS Cloud monthly SaaS",
+        "memo_keywords": [
+          "aws",
+          "cloud",
+          "monthly",
+          "saas"
+        ],
+        "category_id": "communications",
+        "category_name_ja": "通信費",
+        "freee_account_code": 615,
+        "tax_code": 2,
+        "amount_typical": 15000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "amazon.co.jp_オフィス用品": [
+      {
+        "partner_key": "amazon.co.jp_オフィス用品",
+        "memo_sample": "Amazon.co.jp オフィス用品",
+        "memo_keywords": [
+          "amazon.co.jp",
+          "オフィス用品"
+        ],
+        "category_id": "consumables",
+        "category_name_ja": "消耗品費",
+        "freee_account_code": 619,
+        "tax_code": 2,
+        "amount_typical": 8500,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "ana_羽田_那覇": [
+      {
+        "partner_key": "ana_羽田_那覇",
+        "memo_sample": "ANA 羽田-那覇 出張 出張",
+        "memo_keywords": [
+          "ana",
+          "羽田",
+          "那覇",
+          "出張",
+          "出張"
+        ],
+        "category_id": "travel",
+        "category_name_ja": "旅費交通費",
+        "freee_account_code": 605,
+        "tax_code": 1,
+        "amount_typical": 42000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "スターバックス_渋谷店": [
+      {
+        "partner_key": "スターバックス_渋谷店",
+        "memo_sample": "スターバックス 渋谷店",
+        "memo_keywords": [
+          "スターバックス",
+          "渋谷店"
+        ],
+        "category_id": "meeting_meal",
+        "category_name_ja": "会議費",
+        "freee_account_code": 626,
+        "tax_code": 2,
+        "amount_typical": 580,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "東京電力_5月分": [
+      {
+        "partner_key": "東京電力_5月分",
+        "memo_sample": "東京電力 5月分",
+        "memo_keywords": [
+          "東京電力",
+          "5月分"
+        ],
+        "category_id": "utilities",
+        "category_name_ja": "水道光熱費",
+        "freee_account_code": 616,
+        "tax_code": 2,
+        "amount_typical": 8500,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "ヤマト運輸_宅急便_送料": [
+      {
+        "partner_key": "ヤマト運輸_宅急便_送料",
+        "memo_sample": "ヤマト運輸 宅急便 送料",
+        "memo_keywords": [
+          "ヤマト運輸",
+          "宅急便",
+          "送料"
+        ],
+        "category_id": "shipping",
+        "category_name_ja": "荷造運賃",
+        "freee_account_code": 614,
+        "tax_code": 2,
+        "amount_typical": 1200,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "openai_subscription_saas": [
+      {
+        "partner_key": "openai_subscription_saas",
+        "memo_sample": "OpenAI subscription SaaS",
+        "memo_keywords": [
+          "openai",
+          "subscription",
+          "saas"
+        ],
+        "category_id": "communications",
+        "category_name_ja": "通信費",
+        "freee_account_code": 615,
+        "tax_code": 2,
+        "amount_typical": 3000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "タクシー_日本交通_六本木": [
+      {
+        "partner_key": "タクシー_日本交通_六本木",
+        "memo_sample": "タクシー 日本交通 六本木",
+        "memo_keywords": [
+          "タクシー",
+          "日本交通",
+          "六本木"
+        ],
+        "category_id": "travel",
+        "category_name_ja": "旅費交通費",
+        "freee_account_code": 605,
+        "tax_code": 1,
+        "amount_typical": 2800,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "スターバックス_接待_取引先a": [
+      {
+        "partner_key": "スターバックス_接待_取引先a",
+        "memo_sample": "スターバックス 接待 取引先A",
+        "memo_keywords": [
+          "スターバックス",
+          "接待",
+          "取引先a"
+        ],
+        "category_id": "entertainment",
+        "category_name_ja": "交際費",
+        "freee_account_code": 624,
+        "tax_code": 2,
+        "amount_typical": 15000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "ntt_ドコモ_携帯料金": [
+      {
+        "partner_key": "ntt_ドコモ_携帯料金",
+        "memo_sample": "NTT ドコモ 携帯料金",
+        "memo_keywords": [
+          "ntt",
+          "ドコモ",
+          "携帯料金"
+        ],
+        "category_id": "communications",
+        "category_name_ja": "通信費",
+        "freee_account_code": 615,
+        "tax_code": 2,
+        "amount_typical": 5000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "ダイソー_事務用品": [
+      {
+        "partner_key": "ダイソー_事務用品",
+        "memo_sample": "ダイソー 事務用品",
+        "memo_keywords": [
+          "ダイソー",
+          "事務用品"
+        ],
+        "category_id": "consumables",
+        "category_name_ja": "消耗品費",
+        "freee_account_code": 619,
+        "tax_code": 2,
+        "amount_typical": 3200,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "東京ガス_5月分": [
+      {
+        "partner_key": "東京ガス_5月分",
+        "memo_sample": "東京ガス 5月分",
+        "memo_keywords": [
+          "東京ガス",
+          "5月分"
+        ],
+        "category_id": "utilities",
+        "category_name_ja": "水道光熱費",
+        "freee_account_code": 616,
+        "tax_code": 2,
+        "amount_typical": 4500,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "クロネコメール便_書類発送": [
+      {
+        "partner_key": "クロネコメール便_書類発送",
+        "memo_sample": "クロネコメール便 書類発送",
+        "memo_keywords": [
+          "クロネコメール便",
+          "書類発送"
+        ],
+        "category_id": "shipping",
+        "category_name_ja": "荷造運賃",
+        "freee_account_code": 614,
+        "tax_code": 2,
+        "amount_typical": 360,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "さくらインターネット_サーバー費_saas": [
+      {
+        "partner_key": "さくらインターネット_サーバー費_saas",
+        "memo_sample": "さくらインターネット サーバー費 SaaS",
+        "memo_keywords": [
+          "さくらインターネット",
+          "サーバー費",
+          "saas"
+        ],
+        "category_id": "communications",
+        "category_name_ja": "通信費",
+        "freee_account_code": 615,
+        "tax_code": 2,
+        "amount_typical": 12000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "pasmo_チャージ_東京駅": [
+      {
+        "partner_key": "pasmo_チャージ_東京駅",
+        "memo_sample": "PASMO チャージ 東京駅",
+        "memo_keywords": [
+          "pasmo",
+          "チャージ",
+          "東京駅"
+        ],
+        "category_id": "travel",
+        "category_name_ja": "旅費交通費",
+        "freee_account_code": 605,
+        "tax_code": 1,
+        "amount_typical": 680,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "ビックカメラ_モニター": [
+      {
+        "partner_key": "ビックカメラ_モニター",
+        "memo_sample": "ビックカメラ モニター",
+        "memo_keywords": [
+          "ビックカメラ",
+          "モニター"
+        ],
+        "category_id": "consumables",
+        "category_name_ja": "消耗品費",
+        "freee_account_code": 619,
+        "tax_code": 2,
+        "amount_typical": 25000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      },
+      {
+        "partner_key": "ビックカメラ_モニター",
+        "memo_sample": "ビックカメラ モニター",
+        "memo_keywords": [
+          "ビックカメラ",
+          "モニター"
+        ],
+        "category_id": "equipment",
+        "category_name_ja": "工具器具備品",
+        "amount_typical": 0,
+        "confidence_source": "correction",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "ドトール_打合せ": [
+      {
+        "partner_key": "ドトール_打合せ",
+        "memo_sample": "ドトール 打合せ",
+        "memo_keywords": [
+          "ドトール",
+          "打合せ"
+        ],
+        "category_id": "meeting_meal",
+        "category_name_ja": "会議費",
+        "freee_account_code": 626,
+        "tax_code": 2,
+        "amount_typical": 1200,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "jal_東京_大阪": [
+      {
+        "partner_key": "jal_東京_大阪",
+        "memo_sample": "JAL 東京-大阪 出張 出張",
+        "memo_keywords": [
+          "jal",
+          "東京",
+          "大阪",
+          "出張",
+          "出張"
+        ],
+        "category_id": "travel",
+        "category_name_ja": "旅費交通費",
+        "freee_account_code": 605,
+        "tax_code": 1,
+        "amount_typical": 35000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "居酒屋_取引先b_会食": [
+      {
+        "partner_key": "居酒屋_取引先b_会食",
+        "memo_sample": "居酒屋 取引先B 会食",
+        "memo_keywords": [
+          "居酒屋",
+          "取引先b",
+          "会食"
+        ],
+        "category_id": "meeting_meal",
+        "category_name_ja": "会議費",
+        "freee_account_code": 626,
+        "tax_code": 2,
+        "amount_typical": 8000,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "google_workspace_saas": [
+      {
+        "partner_key": "google_workspace_saas",
+        "memo_sample": "Google Workspace SaaS",
+        "memo_keywords": [
+          "google",
+          "workspace",
+          "saas"
+        ],
+        "category_id": "communications",
+        "category_name_ja": "通信費",
+        "freee_account_code": 615,
+        "tax_code": 2,
+        "amount_typical": 2980,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "コクヨ_コピー用紙": [
+      {
+        "partner_key": "コクヨ_コピー用紙",
+        "memo_sample": "コクヨ コピー用紙",
+        "memo_keywords": [
+          "コクヨ",
+          "コピー用紙"
+        ],
+        "category_id": "supplies",
+        "category_name_ja": "事務用品費",
+        "freee_account_code": 618,
+        "tax_code": 2,
+        "amount_typical": 4800,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "佐川急便_宅配便": [
+      {
+        "partner_key": "佐川急便_宅配便",
+        "memo_sample": "佐川急便 宅配便",
+        "memo_keywords": [
+          "佐川急便",
+          "宅配便"
+        ],
+        "category_id": "shipping",
+        "category_name_ja": "荷造運賃",
+        "freee_account_code": 614,
+        "tax_code": 2,
+        "amount_typical": 800,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "zoom_pro_monthly": [
+      {
+        "partner_key": "zoom_pro_monthly",
+        "memo_sample": "Zoom Pro monthly SaaS",
+        "memo_keywords": [
+          "zoom",
+          "pro",
+          "monthly",
+          "saas"
+        ],
+        "category_id": "communications",
+        "category_name_ja": "通信費",
+        "freee_account_code": 615,
+        "tax_code": 2,
+        "amount_typical": 1500,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "タクシー_帝都自動車": [
+      {
+        "partner_key": "タクシー_帝都自動車",
+        "memo_sample": "タクシー 帝都自動車",
+        "memo_keywords": [
+          "タクシー",
+          "帝都自動車"
+        ],
+        "category_id": "travel",
+        "category_name_ja": "旅費交通費",
+        "freee_account_code": 605,
+        "tax_code": 1,
+        "amount_typical": 1800,
+        "confidence_source": "keyword",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ],
+    "居酒屋": [
+      {
+        "partner_key": "居酒屋",
+        "memo_sample": "居酒屋",
+        "memo_keywords": [
+          "居酒屋"
+        ],
+        "category_id": "entertainment",
+        "category_name_ja": "交際費",
+        "amount_typical": 0,
+        "confidence_source": "correction",
+        "match_count": 1,
+        "first_seen": "2026-05-19",
+        "last_seen": "2026-05-19",
+        "company_ids": []
+      }
+    ]
+  },
+  "corrections": [
+    {
+      "id": "corr_1779153429328_r5paec",
+      "partner_key": "居酒屋",
+      "memo_pattern": "居酒屋",
+      "to_category_id": "entertainment",
+      "to_category_name_ja": "交際費",
+      "reason": "取引先との会食は交際費 (5,000円超)",
+      "corrected_at": "2026-05-19T01:17:09.328Z",
+      "active": true
+    },
+    {
+      "id": "corr_1779153429328_dhsnot",
+      "partner_key": "ビックカメラ_モニター",
+      "memo_pattern": "ビックカメラ モニター",
+      "to_category_id": "equipment",
+      "to_category_name_ja": "工具器具備品",
+      "reason": "モニターは消耗品費ではなく備品計上 (税理士判断)",
+      "corrected_at": "2026-05-19T01:17:09.328Z",
+      "active": true
+    }
+  ],
+  "company_configs": {},
+  "stats": {
+    "total_patterns": 27,
+    "total_corrections": 2,
+    "pattern_hits": 27,
+    "correction_hits": 2,
+    "cache_misses": 25,
+    "last_save": "2026-05-19T01:17:10.476Z"
+  }
+}

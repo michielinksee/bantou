@@ -1,0 +1,48 @@
+{
+  "name": "jp-accounting",
+  "display_name": "Claude for JP Accounting",
+  "version": "1.0.0",
+  "description": "AI-powered bookkeeping automation for Japanese tax accountants. Supports freee, Yayoi, MoneyForward, TKC.",
+  "description_ja": "日本の税理士事務所向け AI 自動仕訳プラグイン。freee・弥生・MF・TKC 対応。修正を永久記憶し、使うほど賢くなる。",
+  "author": "Synapse Arrows PTE. LTD.",
+  "homepage": "https://github.com/synapse-arrows/claude-for-jp-accounting",
+  "license": "Apache-2.0",
+  "languages": ["ja", "en"],
+  "categories": ["finance", "accounting", "japan"],
+  "mcpServers": {
+    "cockpit": {
+      "command": "npx",
+      "args": ["-y", "@kansei-link/cockpit@latest"],
+      "env": {
+        "ANTHROPIC_API_KEY": {
+          "description": "Claude API key for Stage 2 classification fallback",
+          "sensitive": true,
+          "required": true
+        },
+        "FREEE_ACCESS_TOKEN": {
+          "description": "freee OAuth token (optional — only needed for freee API direct access)",
+          "sensitive": true,
+          "required": false
+        }
+      }
+    }
+  },
+  "userConfig": {
+    "firm_name": {
+      "type": "string",
+      "description": "事務所名",
+      "required": true
+    },
+    "primary_software": {
+      "type": "enum",
+      "options": ["freee", "yayoi", "mf", "tkc", "mixed"],
+      "description": "メインの会計ソフト",
+      "default": "mixed"
+    },
+    "client_count": {
+      "type": "number",
+      "description": "顧問先数 (概算)",
+      "default": 30
+    }
+  }
+}

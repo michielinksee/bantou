@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* Cockpit color tokens */
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --foreground-secondary: #475569;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+
+  /* Brand */
+  --accent: #6366f1; /* indigo-500 */
+  --accent-dark: #4f46e5; /* indigo-600 */
+  --accent-light: #a5b4fc; /* indigo-300 */
+  --blue: #3b82f6;
+  --purple: #a855f7;
+
+  /* Status */
+  --status-success: #10b981;
+  --status-warning: #f59e0b;
+  --status-danger: #ef4444;
+  --status-info: #3b82f6;
+
+  /* Background variants */
+  --background-soft: #f8fafc;
+  --background-elevated: #ffffff;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-family-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Cockpit design system primitives */
+.chip {
+  @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium;
+  border-color: var(--border);
+  background: var(--background-soft);
+  color: var(--text-body);
+}
+
+.chip-blue {
+  @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium;
+  border-color: var(--accent-light);
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--accent-dark);
+}
+
+.card {
+  background: var(--background-elevated);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.card-lg {
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition;
+  background: var(--accent-dark);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--accent);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition;
+  border-color: var(--border);
+  color: var(--foreground);
+  background: var(--background-elevated);
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.mono {
+  font-family: "SF Mono", Monaco, Menlo, Consolas, "Courier New", monospace;
+}

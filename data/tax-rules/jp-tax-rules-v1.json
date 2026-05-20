@@ -1,0 +1,170 @@
+{
+  "version": "1.1.0",
+  "locale": "ja-JP",
+
+  "overseas_saas_providers": [
+    "aws", "amazon web services",
+    "google cloud", "gcp",
+    "azure", "microsoft azure",
+    "openai", "anthropic", "claude",
+    "cursor",
+    "github", "gitlab",
+    "cloudflare",
+    "vercel", "netlify", "heroku",
+    "digitalocean", "linode",
+    "stripe",
+    "figma", "adobe", "canva",
+    "slack", "discord",
+    "zoom",
+    "notion", "asana", "trello", "jira",
+    "dropbox", "datadog", "sentry",
+    "twilio", "sendgrid", "mailgun",
+    "hubspot", "intercom",
+    "1password", "lastpass",
+    "postman", "linear"
+  ],
+
+  "overseas_ad_platforms": [
+    "google ads", "google adwords", "adwords",
+    "meta", "facebook ads", "instagram ads",
+    "twitter ads", "x ads",
+    "linkedin ads",
+    "tiktok ads",
+    "youtube ads",
+    "pinterest ads",
+    "reddit ads",
+    "apple search ads"
+  ],
+
+  "domestic_telecom_providers": [
+    "docomo", "ドコモ",
+    "au", "kddi",
+    "softbank", "ソフトバンク",
+    "ntt", "ntt東日本", "ntt西日本", "nttコミュニケーションズ",
+    "さくらインターネット", "さくら",
+    "ocn",
+    "フレッツ", "flets",
+    "biglobe", "ビッグローブ",
+    "so-net", "ソネット",
+    "お名前.com", "onamae",
+    "iij", "インターネットイニシアティブ",
+    "楽天モバイル", "rakuten mobile",
+    "uqモバイル", "uq mobile",
+    "ワイモバイル", "y!mobile"
+  ],
+
+  "domestic_ad_platforms": [
+    "yahoo!広告", "yahoo広告", "yda", "ydn",
+    "line ads", "line広告",
+    "smartnews広告", "gunosy広告",
+    "indeed"
+  ],
+
+  "jct_indicator_keywords": [
+    "jct",
+    "消費税",
+    "インボイス",
+    "invoice",
+    "適格請求書"
+  ],
+
+  "asset_capitalization": {
+    "expense_max": 99999,
+    "lump_sum_3yr_max": 199999,
+    "sme_immediate_max": 299999
+  },
+
+  "withholding_tax": {
+    "bracket_1_ceiling": 1000000,
+    "rate_bracket_1": 0.1021,
+    "rate_bracket_2": 0.2042
+  },
+
+  "consumption_tax": {
+    "standard_rate": 10,
+    "reduced_rate": 8,
+    "exempt_rate": 0,
+
+    "newspaper_keywords": [
+      "新聞", "日経", "朝日", "読売", "毎日", "産経",
+      "newspaper", "nikkei"
+    ],
+
+    "food_beverage_keywords": [
+      "弁当", "ケータリング", "テイクアウト", "持ち帰り",
+      "出前", "デリバリー", "uber eats", "ubereats",
+      "出前館", "wolt", "menu",
+      "コンビニ", "スーパー"
+    ],
+
+    "takeout_delivery_keywords": [
+      "テイクアウト", "持ち帰り", "出前", "デリバリー",
+      "uber eats", "ubereats", "出前館", "wolt",
+      "menu", "弁当", "仕出し"
+    ],
+
+    "food_purchase_keywords": [
+      "コンビニ", "セブンイレブン", "ローソン", "ファミマ",
+      "スーパー", "イオン", "西友", "ライフ",
+      "成城石井", "紀ノ国屋", "オーケー",
+      "食品", "飲料", "お茶", "コーヒー豆",
+      "菓子", "お菓子", "スイーツ"
+    ],
+
+    "catering_with_service_keywords": [
+      "ケータリング", "出張料理", "パーティー",
+      "配膳", "サービス料"
+    ],
+
+    "residential_rent_keywords": [
+      "住居", "住宅", "マンション", "アパート",
+      "居住用", "住居用", "自宅", "社宅",
+      "residential"
+    ],
+
+    "non_taxable_categories": [
+      "salary",
+      "membership_fee",
+      "insurance",
+      "taxes_dues",
+      "donation",
+      "condolence"
+    ],
+
+    "non_taxable_reasons": {
+      "salary": "給与 — 消費税対象外",
+      "membership_fee": "諸会費 — 原則として消費税対象外",
+      "insurance": "保険料 — 消費税非課税(保険業法に基づく保険契約)",
+      "taxes_dues": "租税公課 — 消費税不課税(国・地方への公的支出)",
+      "donation": "寄付金 — 消費税不課税(対価性なし)",
+      "condolence": "慶弔費 — 消費税不課税(対価性なし)"
+    }
+  },
+
+  "invoice_system": {
+    "registration_prefix": "T",
+    "registration_digits": 13,
+    "transitional_periods": [
+      {
+        "start": "2023-10-01",
+        "end": "2026-09-30",
+        "deduction_rate": 80,
+        "label": "経過措置第1期 — 仕入税額控除80%"
+      },
+      {
+        "start": "2026-10-01",
+        "end": "2029-09-30",
+        "deduction_rate": 50,
+        "label": "経過措置第2期 — 仕入税額控除50%"
+      },
+      {
+        "start": "2029-10-01",
+        "end": "9999-12-31",
+        "deduction_rate": 0,
+        "label": "経過措置終了 — 仕入税額控除不可"
+      }
+    ],
+    "small_business_threshold": 10000,
+    "small_business_note": "1万円未満の課税仕入れは、少額特例により帳簿のみで仕入税額控除可(基準期間の課税売上高1億円以下の事業者、2029年9月まで)"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "cockpit": {
+      "command": "npx",
+      "args": ["-y", "@kansei-link/cockpit@latest"],
+      "env": {
+        "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}",
+        "FREEE_ACCESS_TOKEN": "${FREEE_ACCESS_TOKEN}",
+        "COCKPIT_MEMORY_PATH": "${CLAUDE_PLUGIN_ROOT}/data/memory.json"
+      }
+    }
+  }
+}

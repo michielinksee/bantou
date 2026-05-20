@@ -1,0 +1,25 @@
+{
+  "name": "kansei-link-cockpit",
+  "version": "0.0.1-pre",
+  "private": true,
+  "description": "KanseiLink Cockpit monorepo: MCP server (free) + Web Dashboard (paid) + shared types",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "dev:mcp": "pnpm --filter @kansei-link/cockpit dev",
+    "dev:dashboard": "pnpm --filter @kansei-link/cockpit-dashboard dev",
+    "lint": "pnpm -r lint"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

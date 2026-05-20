@@ -1,0 +1,185 @@
+{
+  "$schema": "../exclusion-rules-schema.json",
+  "version": "1.0.0",
+  "locale": "ja-JP",
+  "tax_jurisdiction": "JP",
+  "last_updated": "2026-05-09",
+  "maintainer": "Synapse Arrows PTE. LTD.",
+  "license": "MIT",
+  "description": "Cockpit MCP の Stage 0 exclusion filter。 自動仕訳すべきでない transaction を弾いて 人間 review に escalate する。 実務ベースの 7 種除外ルール。",
+  "notes": [
+    "execution: classify_transaction の前に check_exclusion を必ず call",
+    "match → return { excluded: true, rule_id, reason, action: 'human_review' }",
+    "no match → classify_transaction (Stage 1+2) へ進む",
+    "rule priority: 上から順 (= 同 transaction が複数 rule match なら 上のが採用)",
+    "extension: 各事務所が override / 追加可能 (= per-firm exclusion overrides 機構)"
+  ],
+  "rules": [
+    {
+      "id": "unknown_debit",
+      "name_ja": "内容不明デビット",
+      "name_en": "Unknown debit (no merchant name)",
+      "description": "「デビット+数字」だけで店名がない transaction。 詳細不明のため自動仕訳せず人間 review。",
+      "priority": 1,
+      "match": {
+        "type": "regex",
+        "field": "memo",
+        "pattern": "^デビット[\\s\\d\\-]*$",
+        "flags": "i"
+      },
+      "alternative_patterns": [
+        "デビット利用",
+        "DEBIT",
+        "VISA DEBIT 振替"
+      ],
+      "action": {
+        "type": "human_review",
+        "reason_template": "店名不明のデビット取引。 通帳 or 利用明細から店名特定後 人間判断 required。",
+        "suggested_next_step": "freee 上で取引詳細を開き、 利用明細から merchant 確定 → 適切な category へ分類"
+      }
+    },
+    {
+      "id": "loan_repayment",
+      "name_ja": "借入金返済",
+      "name_en": "Loan repayment",
+      "description": "公庫・銀行借入 / ローン返済。 元本+利息 内訳 が必要なため自動仕訳せず。",
+      "priority": 2,
+      "match": {
+        "type": "any_keyword",
+        "field": "memo",
+        "keywords": [
+          "公庫", "日本政策金融公庫", "JFC",
+          "融資", "借入", "借入金返済", "返済",
+          "ローン", "Loan", "LOAN",
+          "信金", "信用金庫",
+          "商工中金",
+          "プロパー融資"
+        ]
+      },
+      "action": {
+        "type": "human_review",
+        "reason_template": "借入金返済または融資関連取引。 元本 / 利息 内訳必要、 freee の 借入金返済 wizard 推奨。",
+        "suggested_next_step": "freee → 取引 → 借入金返済 wizard で元本・利息分離"
+      }
+    },
+    {
+      "id": "social_insurance_tax",
+      "name_ja": "社会保険料・税金",
+      "name_en": "Social insurance & taxes",
+      "description": "年金 / 健保 / 源泉所得税 / 住民税 / 法人税 等の納付。 仕訳科目が複雑なため自動 NG。",
+      "priority": 3,
+      "match": {
+        "type": "any_keyword",
+        "field": "memo",
+        "keywords": [
+          "年金", "厚生年金", "国民年金",
+          "健保", "健康保険", "協会けんぽ", "けんぽ",
+          "源泉", "源泉税", "源泉所得税",
+          "住民税", "市民税", "県民税", "都民税",
+          "法人税", "事業税", "消費税納付",
+          "労災", "雇用保険",
+          "国税", "地方税",
+          "印紙税"
+        ]
+      },
+      "action": {
+        "type": "human_review",
+        "reason_template": "社保・税金納付。 法定福利費 / 預り金 / 租税公課 等の科目選択判断必要。",
+        "suggested_next_step": "freee → 取引 → 社会保険料 / 税金 wizard で適切科目選択"
+      }
+    },
+    {
+      "id": "salary_payment",
+      "name_ja": "給与支払い",
+      "name_en": "Salary payment",
+      "description": "従業員への給与振込。 freee 人事労務 API から従業員名 list を取得して match。 自動仕訳禁止 (= 給与計算と連動の必要)。",
+      "priority": 4,
+      "match": {
+        "type": "any_keyword_or_pattern",
+        "field": "memo",
+        "keywords": [
+          "給与", "給料", "ボーナス", "賞与"
+        ],
+        "patterns": [
+          {
+            "type": "transfer_to_employee",
+            "description": "振込 + freee 人事労務 API の従業員 list 内の名前 match",
+            "requires_external_data": "freee_hr_employee_list"
+          }
+        ]
+      },
+      "action": {
+        "type": "human_review",
+        "reason_template": "給与振込検出。 給与計算結果と整合確認後、 freee 給与仕訳 wizard で起票。",
+        "suggested_next_step": "freee 人事労務 → 給与計算 → 仕訳作成 で自動連動"
+      }
+    },
+    {
+      "id": "investment",
+      "name_ja": "投資・資産運用",
+      "name_en": "Investment / securities",
+      "description": "証券口座への入出金、 投資信託 等。 投資勘定 / 雑所得 / 譲渡益 等の判断必要。",
+      "priority": 5,
+      "match": {
+        "type": "any_keyword",
+        "field": "memo",
+        "keywords": [
+          "証券", "野村", "大和", "SMBC日興", "みずほ証券", "三菱UFJモルガン",
+          "SBI証券", "楽天証券", "マネックス", "auカブコム", "松井証券",
+          "投資信託", "ファンド", "FUND",
+          "株式", "株",
+          "FX", "暗号資産", "Bitflyer", "Coincheck", "GMOコイン",
+          "REIT", "ETF",
+          "NISA", "iDeCo", "つみたて"
+        ]
+      },
+      "action": {
+        "type": "human_review",
+        "reason_template": "投資・資産運用関連取引。 仕訳科目 (= 投資有価証券 / 雑所得 / 譲渡益等) は税理士判断。",
+        "suggested_next_step": "個別 review、 必要なら年度末まで仮勘定で保持"
+      }
+    },
+    {
+      "id": "atm_withdrawal",
+      "name_ja": "ATM出金・残高調整",
+      "name_en": "ATM withdrawal / balance adjustment",
+      "description": "ATM 出金は口座振替で別処理。 仕訳起票せず、 別途 balance adjustment workflow へ。",
+      "priority": 6,
+      "match": {
+        "type": "any_keyword",
+        "field": "memo",
+        "keywords": [
+          "ATM", "ATM出金", "現金引出", "引出", "引き出し",
+          "ゆうちょATM", "コンビニATM",
+          "セブン銀行ATM", "イオン銀行ATM"
+        ]
+      },
+      "action": {
+        "type": "alternative_workflow",
+        "alternative_workflow_id": "cash_balance_adjustment",
+        "reason_template": "ATM 出金 / 現金引出。 口座振替として別処理、 現金勘定残高調整に流す。",
+        "suggested_next_step": "freee → 振替伝票 → 普通預金 → 現金"
+      }
+    },
+    {
+      "id": "utilities",
+      "name_ja": "公共料金",
+      "name_en": "Public utilities (no matching account category)",
+      "description": "個人宅の電気・ガス・水道。 事業所契約と区別困難なため、 自動 NG。 (事業所契約の utilities は keyword-dict utilities category で別途処理)",
+      "priority": 7,
+      "match": {
+        "type": "any_keyword",
+        "field": "memo",
+        "keywords": [
+          "東京水道局", "東京都水道", "水道局", "上下水道",
+          "NHK受信料", "NHK"
+        ]
+      },
+      "action": {
+        "type": "human_review",
+        "reason_template": "公共料金検出。 事業利用 vs 個人利用の按分判断必要。",
+        "suggested_next_step": "事業利用比率 (= 例: 自宅事務所なら 30%) を手動設定後仕訳"
+      }
+    }
+  ]
+}

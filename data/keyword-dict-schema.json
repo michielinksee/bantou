@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/michielinksee/kansei-link-cockpit/blob/main/data/keyword-dict-schema.json",
+  "title": "Cockpit MCP Keyword Dictionary",
+  "description": "Schema for Stage 1 keyword classification dictionaries used by Cockpit MCP's two-stage classifier. Each category maps a list of keywords (= service names, vendor names, common 摘要 patterns) to a 勘定科目 + 税区分.",
+  "type": "object",
+  "required": ["version", "locale", "tax_jurisdiction", "categories"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semver version of this dictionary"
+    },
+    "locale": {
+      "type": "string",
+      "pattern": "^[a-z]{2}-[A-Z]{2}$",
+      "description": "BCP 47 locale code (e.g., ja-JP)"
+    },
+    "tax_jurisdiction": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2 country code for tax regime"
+    },
+    "tax_code_default": {
+      "type": "integer",
+      "description": "Default tax_code if no per-keyword override (= freee 税区分 ID)"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 YYYY-MM-DD"
+    },
+    "maintainer": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string",
+      "default": "MIT"
+    },
+    "description": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Free-form notes / caveats / algorithm details"
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name_ja", "freee_account_code", "default_tax_code", "keywords"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z_]+$",
+            "description": "Stable ID (lowercase, underscore-separated)"
+          },
+          "name_ja": {
+            "type": "string",
+            "description": "Japanese display name (= 勘定科目名)"
+          },
+          "name_en": {
+            "type": "string",
+            "description": "English equivalent for international expansion"
+          },
+          "freee_account_code": {
+            "type": "integer",
+            "description": "freee 勘定科目 ID (= account_item_id in freee API)"
+          },
+          "mf_account_code": {
+            "type": "integer",
+            "description": "Money Forward 勘定科目 ID (optional, set when freee + MF mapping confirmed)"
+          },
+          "default_tax_code": {
+            "type": "integer",
+            "description": "freee 税区分 ID (= tax_code, e.g., 0=対象外, 1=課税仕入8%, 2=課税仕入10%)"
+          },
+          "description": {
+            "type": "string"
+          },
+          "amount_threshold_min": {
+            "type": "number",
+            "description": "Minimum amount (JPY) — below this, transaction does NOT match this category. Used for tiered rules like 会議費 (≤¥10K) vs 交際費 (>¥10K)."
+          },
+          "amount_threshold_max": {
+            "type": "number",
+            "description": "Maximum amount (JPY) — above this, transaction does NOT match this category. Used for fixed-asset thresholds like 事務用品費 (<¥100K) vs 備品 (≥¥100K)."
+          },
+          "amount_overflow_category": {
+            "type": "string",
+            "description": "If amount exceeds amount_threshold_max, auto-redirect to this category id (e.g., 会議費 → 交際費)."
+          },
+          "special_pattern": {
+            "type": "string",
+            "enum": [
+              "salary_employee_match",
+              "transfer_katakana_person",
+              "transfer_professional"
+            ],
+            "description": "Custom matching logic that requires more than keyword substring (= e.g., '振込+カナ人名 → 外注費' requires regex + name detection)"
+          },
+          "keywords": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "List of substrings to match against normalized 摘要 (= 全角→半角 + lowercase). Order matters for priority within the same category. Across categories, the FIRST matching category wins (= top categories take priority)."
+          }
+        }
+      }
+    }
+  }
+}

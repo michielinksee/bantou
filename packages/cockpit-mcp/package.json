@@ -1,0 +1,73 @@
+{
+  "name": "@kansei-link/cockpit",
+  "version": "0.1.0",
+  "description": "Accounting automation MCP server for Japanese tax firms. Two-stage classifier (keyword + Claude AI) + TaxRuleEngine + invoice checker + persistent memory. 19 categories, 200 tests.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "kansei-link-cockpit": "dist/index.js"
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "!dist/**/__tests__/**",
+    "data/keyword-dict/jp-tax-baseline-v1.json",
+    "data/keyword-dict-schema.json",
+    "data/exclusion-rules/jp-tax-baseline-v1.json",
+    "data/exclusion-rules-schema.json",
+    "data/tax-rules/jp-tax-rules-v1.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "smoke": "node tests/smoke.mjs",
+    "copy-data": "node -e \"require('fs').cpSync('../../data','./data',{recursive:true})\"",
+    "clean-data": "node -e \"require('fs').rmSync('./data',{recursive:true,force:true})\"",
+    "prepublishOnly": "npm run copy-data && npm run build && npm test"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "accounting",
+    "freee",
+    "money-forward",
+    "tax-accountant",
+    "japan",
+    "automation",
+    "claude",
+    "claude-code"
+  ],
+  "author": "Synapse Arrows PTE. LTD.",
+  "license": "MIT",
+  "homepage": "https://github.com/michielinksee/kansei-link-cockpit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michielinksee/kansei-link-cockpit.git",
+    "directory": "packages/cockpit-mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/michielinksee/kansei-link-cockpit/issues"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "better-sqlite3": "^12.9.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
