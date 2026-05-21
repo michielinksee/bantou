@@ -27,6 +27,6 @@ The `data/` directory contains classification rules used by the MCP server:
 
 ## License
 
-MIT — see [LICENSE](./packages/cockpit-mcp/LICENSE) for details.
+MIT — see [LICENSE](./LICENSE) for details.
 
 Copyright (c) 2026 Synapse Arrows PTE. LTD.
