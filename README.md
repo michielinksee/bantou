@@ -1,5 +1,7 @@
 # KanseiLink Cockpit
 
+[![cockpit-mcp MCP Server](https://glama.ai/mcp/servers/michielinksee/kansei-link-cockpit/badges/card.svg)](https://glama.ai/mcp/servers/michielinksee/kansei-link-cockpit)
+
 Monorepo for **@kansei-link/cockpit** — an MCP server for Japanese accounting workflow automation.
 
 ## Packages

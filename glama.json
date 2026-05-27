@@ -1,0 +1,16 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "name": "cockpit-mcp",
+  "display_name": "KanseiLink Cockpit",
+  "description": "Accounting automation MCP server for Japanese tax firms. Two-stage classifier (keyword + Claude AI) + TaxRuleEngine + invoice checker + persistent memory.",
+  "repository": "https://github.com/michielinksee/kansei-link-cockpit",
+  "homepage": "https://www.npmjs.com/package/@kansei-link/cockpit",
+  "tags": ["accounting", "tax", "japan", "mcp", "finance", "automation", "freee", "invoice"],
+  "tools": [
+    "classify_transaction",
+    "get_tax_rule",
+    "check_invoice",
+    "monthly_report",
+    "get_classification_stats"
+  ]
+}
