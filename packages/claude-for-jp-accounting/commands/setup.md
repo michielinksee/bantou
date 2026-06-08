@@ -1,4 +1,8 @@
-# /jp-accounting:setup
+---
+description: 事務所の初期設定（対話式ウィザード）
+---
+
+# /bantou:setup
 
 Initial firm onboarding. Conducts a guided interview to configure
 the plugin for the tax accountant's office.

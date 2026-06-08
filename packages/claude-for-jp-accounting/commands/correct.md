@@ -1,4 +1,8 @@
-# /jp-accounting:correct
+---
+description: 誤分類の修正を記憶に永久保存
+---
+
+# /bantou:correct
 
 Submit a correction for a misclassified transaction. The correction is
 permanently stored in memory and applied to all future matches.

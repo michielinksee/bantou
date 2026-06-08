@@ -1,3 +1,7 @@
+---
+description: 勘定科目別集計・前月比異常検知付き月次レポート自動生成
+---
+
 # Monthly Closer
 
 Generate structured monthly closing reports for client companies.

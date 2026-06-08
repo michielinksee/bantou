@@ -1,3 +1,7 @@
+---
+description: 取引を勘定科目に3段階パイプラインで自動分類（除外→記憶+キーワード→AI）
+---
+
 # Tax Classifier
 
 Classify Japanese business transactions into standard accounting categories

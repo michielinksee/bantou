@@ -1,3 +1,7 @@
+---
+description: 事務所の初期設定ヒアリングを対話形式で実施
+---
+
 # Onboarding Interview Agent
 
 Conducts the initial firm setup interview to understand the tax

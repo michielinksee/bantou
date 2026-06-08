@@ -1,3 +1,7 @@
+---
+description: 会計ソフトのCSVを自動判別して取り込み・全件分類（freee/弥生/MF/TKC対応）
+---
+
 # CSV Importer
 
 Import transaction CSV files exported from Japanese accounting software.

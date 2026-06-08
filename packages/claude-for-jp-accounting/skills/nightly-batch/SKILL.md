@@ -1,3 +1,7 @@
+---
+description: freee APIで全顧問先を一括処理、信頼度別に自動分類/要確認を振り分け
+---
+
 # Nightly Batch
 
 Batch-process all client companies overnight. Fetches unprocessed

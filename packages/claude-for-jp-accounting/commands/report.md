@@ -1,4 +1,8 @@
-﻿# /jp-accounting:report
+﻿---
+description: 月次クロージングレポートの自動生成
+---
+
+# /bantou:report
 
 Generate a monthly closing report for a client company.
 

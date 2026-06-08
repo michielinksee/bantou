@@ -1,4 +1,8 @@
-# /jp-accounting:import
+---
+description: 会計ソフトCSVの取り込み・全件自動分類
+---
+
+# /bantou:import
 
 Import a CSV file from Japanese accounting software and classify all
 transactions automatically.

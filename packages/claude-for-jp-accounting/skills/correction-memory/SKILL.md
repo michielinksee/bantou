@@ -1,3 +1,7 @@
+---
+description: 税理士の修正を永久記憶し同じ間違いを二度としない学習エンジン
+---
+
 # Correction Memory
 
 Persistent memory system that learns from tax accountant corrections.

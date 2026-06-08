@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "bantou-marketplace",
+  "description": "番頭 — AI仕訳アシスタント。日本の税理士事務所向け会計自動化プラグイン",
+  "owner": {
+    "name": "Synapse Arrows PTE. LTD.",
+    "url": "https://github.com/michielinksee"
+  },
+  "plugins": [
+    {
+      "name": "bantou",
+      "description": "AI-powered bookkeeping automation for Japanese tax accountants. 5 skills: tax classifier, CSV importer, correction memory, monthly closer, nightly batch. Supports freee, Yayoi, MoneyForward, TKC.",
+      "author": {
+        "name": "Synapse Arrows PTE. LTD."
+      },
+      "category": "finance",
+      "source": "./packages/claude-for-jp-accounting",
+      "homepage": "https://github.com/michielinksee/bantou"
+    }
+  ]
+}

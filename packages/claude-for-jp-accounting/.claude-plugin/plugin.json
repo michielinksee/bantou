@@ -1,47 +1,37 @@
 {
   "name": "bantou",
-  "display_name": "番頭 — AI仕訳アシスタント",
+  "displayName": "番頭 — AI仕訳アシスタント",
   "version": "1.0.0",
   "description": "AI-powered bookkeeping automation for Japanese tax accountants. Supports freee, Yayoi, MoneyForward, TKC.",
-  "description_ja": "番頭 — 日本の税理士事務所向け AI 自動仕訳プラグイン。freee・弥生・MF・TKC 対応。修正を永久記憶し、使うほど賢くなる。",
-  "author": "Synapse Arrows PTE. LTD.",
-  "homepage": "https://github.com/synapse-arrows/claude-for-jp-accounting",
+  "author": {
+    "name": "Synapse Arrows PTE. LTD.",
+    "url": "https://github.com/michielinksee"
+  },
+  "homepage": "https://github.com/michielinksee/bantou",
   "license": "Apache-2.0",
-  "languages": ["ja", "en"],
-  "categories": ["finance", "accounting", "japan"],
   "mcpServers": {
     "bantou": {
       "command": "npx",
-      "args": ["-y", "@kansei-link/bantou@latest"],
-      "env": {
-        "ANTHROPIC_API_KEY": {
-          "description": "Claude API key for Stage 2 classification fallback",
-          "sensitive": true,
-          "required": true
-        },
-        "FREEE_ACCESS_TOKEN": {
-          "description": "freee OAuth token (optional — only needed for freee API direct access)",
-          "sensitive": true,
-          "required": false
-        }
-      }
+      "args": ["-y", "@kansei-link/bantou@latest"]
     }
   },
   "userConfig": {
     "firm_name": {
+      "title": "事務所名",
       "type": "string",
-      "description": "事務所名",
+      "description": "事務所名（例：山田税理士事務所）",
       "required": true
     },
     "primary_software": {
-      "type": "enum",
-      "options": ["freee", "yayoi", "mf", "tkc", "mixed"],
-      "description": "メインの会計ソフト",
+      "title": "メイン会計ソフト",
+      "type": "string",
+      "description": "メインの会計ソフト（freee / yayoi / mf / tkc / mixed）",
       "default": "mixed"
     },
     "client_count": {
+      "title": "顧問先数",
       "type": "number",
-      "description": "顧問先数 (概算)",
+      "description": "顧問先数の概算",
       "default": 30
     }
   }

@@ -1,4 +1,8 @@
-# /jp-accounting:nightly
+---
+description: 全顧問先の夜間バッチ処理を実行
+---
+
+# /bantou:nightly
 
 Trigger the nightly batch processing run for all connected client
 companies.

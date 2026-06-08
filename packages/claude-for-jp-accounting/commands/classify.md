@@ -1,4 +1,8 @@
-# /jp-accounting:classify
+---
+description: 単一取引を3段階パイプラインで自動分類
+---
+
+# /bantou:classify
 
 Classify a single Japanese business transaction through the full
 3-stage pipeline.
