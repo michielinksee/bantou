@@ -1,11 +1,11 @@
 {
-  "name": "@kansei-link/cockpit",
-  "version": "0.1.0",
-  "description": "Accounting automation MCP server for Japanese tax firms. Two-stage classifier (keyword + Claude AI) + TaxRuleEngine + invoice checker + persistent memory. 19 categories, 200 tests.",
+  "name": "@kansei-link/bantou",
+  "version": "0.2.0",
+  "description": "番頭 — AI仕訳アシスタント。日本の税理士事務所向け会計自動化MCPサーバー。freee・弥生・MF・TKC対応。修正を永久記憶し、使うほど賢くなる。",
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
-    "kansei-link-cockpit": "dist/index.js"
+    "bantou": "dist/index.js"
   },
   "files": [
     "dist/**/*.js",
@@ -23,6 +23,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
+    "doctor:freee": "tsx src/bin/freee-doctor.ts",
     "test": "vitest run",
     "smoke": "node tests/smoke.mjs",
     "copy-data": "node -e \"require('fs').cpSync('../../data','./data',{recursive:true})\"",

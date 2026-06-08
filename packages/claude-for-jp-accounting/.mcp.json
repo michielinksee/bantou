@@ -1,11 +1,12 @@
 {
   "mcpServers": {
-    "cockpit": {
+    "bantou": {
       "command": "npx",
-      "args": ["-y", "@kansei-link/cockpit@latest"],
+      "args": ["-y", "@kansei-link/bantou@latest"],
       "env": {
         "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}",
         "FREEE_ACCESS_TOKEN": "${FREEE_ACCESS_TOKEN}",
+        "FREEE_COMPANY_ID": "${FREEE_COMPANY_ID}",
         "COCKPIT_MEMORY_PATH": "${CLAUDE_PLUGIN_ROOT}/data/memory.json"
       }
     }

@@ -1,8 +1,8 @@
 {
-  "name": "kansei-link-cockpit",
-  "version": "0.0.1-pre",
+  "name": "bantou",
+  "version": "0.2.0",
   "private": true,
-  "description": "KanseiLink Cockpit monorepo: MCP server (free) + Web Dashboard (paid) + shared types",
+  "description": "番頭 monorepo: AI仕訳アシスタント MCP server (free) + Web Dashboard (paid) + shared types",
   "license": "MIT",
   "workspaces": [
     "packages/*"
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "pnpm -r build",
     "test": "pnpm -r test",
-    "dev:mcp": "pnpm --filter @kansei-link/cockpit dev",
+    "dev:mcp": "pnpm --filter @kansei-link/bantou dev",
     "dev:dashboard": "pnpm --filter @kansei-link/cockpit-dashboard dev",
     "lint": "pnpm -r lint"
   },

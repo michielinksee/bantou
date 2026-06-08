@@ -1,18 +1,18 @@
 {
-  "name": "jp-accounting",
-  "display_name": "Claude for JP Accounting",
+  "name": "bantou",
+  "display_name": "番頭 — AI仕訳アシスタント",
   "version": "1.0.0",
   "description": "AI-powered bookkeeping automation for Japanese tax accountants. Supports freee, Yayoi, MoneyForward, TKC.",
-  "description_ja": "日本の税理士事務所向け AI 自動仕訳プラグイン。freee・弥生・MF・TKC 対応。修正を永久記憶し、使うほど賢くなる。",
+  "description_ja": "番頭 — 日本の税理士事務所向け AI 自動仕訳プラグイン。freee・弥生・MF・TKC 対応。修正を永久記憶し、使うほど賢くなる。",
   "author": "Synapse Arrows PTE. LTD.",
   "homepage": "https://github.com/synapse-arrows/claude-for-jp-accounting",
   "license": "Apache-2.0",
   "languages": ["ja", "en"],
   "categories": ["finance", "accounting", "japan"],
   "mcpServers": {
-    "cockpit": {
+    "bantou": {
       "command": "npx",
-      "args": ["-y", "@kansei-link/cockpit@latest"],
+      "args": ["-y", "@kansei-link/bantou@latest"],
       "env": {
         "ANTHROPIC_API_KEY": {
           "description": "Claude API key for Stage 2 classification fallback",

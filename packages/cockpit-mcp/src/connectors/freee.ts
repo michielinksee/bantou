@@ -78,13 +78,14 @@ export interface CreateDealInput {
 export class FreeeConnector {
   private secrets: FreeeSecrets;
 
-  constructor(secrets: FreeeSecrets) {
+  constructor(secrets: FreeeSecrets, opts: { skipExpiryCheck?: boolean } = {}) {
     this.secrets = secrets;
-    if (isTokenExpired(secrets)) {
+    if (!opts.skipExpiryCheck && isTokenExpired(secrets)) {
       throw new Error(
         'freee access token has expired or is about to expire. ' +
         'Please refresh manually until OAuth refresh flow is implemented. ' +
-        'Re-issue token at https://developer.freee.co.jp/ and update ~/.claude/secrets/freee-cockpit-dev.json'
+        'Re-issue token at https://developer.freee.co.jp/ and update FREEE_ACCESS_TOKEN ' +
+        '(or ~/.claude/secrets/freee-cockpit-dev.json).'
       );
     }
   }
@@ -118,7 +119,10 @@ export class FreeeConnector {
               const errMessage = data.errors
                 ? JSON.stringify(data.errors).slice(0, 300)
                 : `HTTP ${res.statusCode}`;
-              reject(new Error(`freee API ${method} ${path} failed: ${errMessage}`));
+              const hint = res.statusCode === 401
+                ? ' [401 — access token likely expired/invalid; re-issue at https://developer.freee.co.jp/ and update FREEE_ACCESS_TOKEN]'
+                : '';
+              reject(new Error(`freee API ${method} ${path} failed: ${errMessage}${hint}`));
             }
           } catch (e: any) {
             reject(new Error(`freee API parse error: ${e.message}`));

@@ -10,6 +10,7 @@
 //   - recall_memory:           過去パターン・修正履歴検索
 //   - list_freee_deals:        List transactions from freee API
 //   - list_freee_companies:    List all companies accessible by token (multi-company batch)
+//   - freee_doctor:            One-shot freee connection diagnostic (token source / expiry / which company_id)
 //   - reconcile_cross_saas:    freee ↔ MF double-entry detection (= MF connector pending)
 //   - check_duplicate:         Existing transaction lookup in target SaaS
 //   - upsert_partner:          取引先 master auto-creation
@@ -22,6 +23,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { loadFreeeSecrets } from './secrets.js';
 import { FreeeConnector } from './connectors/freee.js';
+import { runFreeeDoctor } from './freee-doctor.js';
 import { KeywordClassifier } from './classifier/keyword-classifier.js';
 import { ClaudeClassifier } from './classifier/claude-classifier.js';
 import { TwoStageClassifier } from './classifier/two-stage-classifier.js';
@@ -186,6 +188,15 @@ const TOOLS = [
     name: 'list_freee_companies',
     description:
       'List all companies (事業所) accessible by the configured freee OAuth token. Returns company IDs + names. Used for multi-company batch processing.',
+    inputSchema: {
+      type: 'object',
+      properties: {},
+    },
+  },
+  {
+    name: 'freee_doctor',
+    description:
+      'Diagnose the freee connection in ONE shot. Checks: (1) where the access token is sourced (FREEE_ACCESS_TOKEN env vs secrets file), (2) whether the token is expired (24h TTL, no auto-refresh), (3) lists ALL 事業所 the token can access and flags whether your configured company_id is live — fixes the "which of my test companies is the real one?" problem. Run this FIRST whenever a freee call fails.',
     inputSchema: {
       type: 'object',
       properties: {},
@@ -605,6 +616,11 @@ async function handleListFreeeCompanies(): Promise<string> {
   }, null, 2);
 }
 
+async function handleFreeeDoctor(): Promise<string> {
+  const report = await runFreeeDoctor();
+  return JSON.stringify(report, null, 2);
+}
+
 /**
  * Nightly batch pipeline for multi-company processing.
  *
@@ -650,6 +666,7 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
       case 'generate_monthly_report': text = await handleGenerateMonthlyReport(args); break;
       case 'list_freee_deals': text = await handleListFreeeDeals(args); break;
       case 'list_freee_companies': text = await handleListFreeeCompanies(); break;
+      case 'freee_doctor': text = await handleFreeeDoctor(); break;
       case 'reconcile_cross_saas': text = await handleReconcileCrossSaas(args); break;
       case 'check_duplicate': text = await handleCheckDuplicate(args); break;
       case 'upsert_partner': text = await handleUpsertPartner(args); break;
