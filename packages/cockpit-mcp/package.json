@@ -1,6 +1,7 @@
 {
   "name": "@kansei-link/bantou",
-  "version": "0.2.0",
+  "version": "0.2.2",
+  "mcpName": "io.github.michielinksee/bantou",
   "description": "番頭 — AI仕訳アシスタント。日本の税理士事務所向け会計自動化MCPサーバー。freee・弥生・MF・TKC対応。修正を永久記憶し、使うほど賢くなる。",
   "type": "module",
   "main": "./dist/index.js",
@@ -44,14 +45,14 @@
   ],
   "author": "Synapse Arrows PTE. LTD.",
   "license": "MIT",
-  "homepage": "https://github.com/michielinksee/kansei-link-cockpit",
+  "homepage": "https://github.com/michielinksee/bantou",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/michielinksee/kansei-link-cockpit.git",
+    "url": "git+https://github.com/michielinksee/bantou.git",
     "directory": "packages/cockpit-mcp"
   },
   "bugs": {
-    "url": "https://github.com/michielinksee/kansei-link-cockpit/issues"
+    "url": "https://github.com/michielinksee/bantou/issues"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",

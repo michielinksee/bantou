@@ -1,0 +1,20 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.michielinksee/bantou",
+  "description": "AI bookkeeping agent for Japanese accountants — auto-classifies freee/Yayoi/MF/TKC transactions.",
+  "repository": {
+    "url": "https://github.com/michielinksee/bantou",
+    "source": "github"
+  },
+  "version": "0.2.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@kansei-link/bantou",
+      "version": "0.2.2",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
